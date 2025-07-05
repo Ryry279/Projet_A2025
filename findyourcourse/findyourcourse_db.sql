@@ -22,6 +22,8 @@ CREATE TABLE `users` (
   `password` VARCHAR(255) NOT NULL COMMENT 'Hashed password',
   `first_name` VARCHAR(50) DEFAULT NULL,
   `last_name` VARCHAR(50) DEFAULT NULL,
+  `code_verification` INT DEFAULT NULL,
+  `email_verified` TINYINT(1) DEFAULT 0,
   `role` ENUM('student', 'admin', 'premium_student') NOT NULL DEFAULT 'student' COMMENT 'User role determines access level',
   `registration_date` TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -171,6 +173,15 @@ CREATE TABLE `password_resets` (
   FOREIGN KEY (`user_id`) REFERENCES `users`(`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+-- Table structure for table ``
+--
+DROP TABLE IF EXISTS `mail_gestion`;
+CREATE TABLE `mail_gestion` (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    titre VARCHAR(255),
+    objet VARCHAR(255),
+    message TEXT
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;;
 
 --
 -- Dumping data for table `users`
@@ -241,6 +252,14 @@ INSERT INTO `answers` (`id`, `question_id`, `answer_text`, `is_correct`) VALUES
 INSERT INTO `answers` (`id`, `question_id`, `answer_text`, `is_correct`) VALUES
 (10, 3, 'True', FALSE),
 (11, 3, 'False', TRUE);
+
+INSERT INTO mail_gestion (titre, objet, message)
+VALUES (
+  'Newsletter Juin 2025',
+  '🎉 Découvrez nos nouvelles formations de Juin !',
+  'Bonjour cher(e) abonné(e),<br><br>Nous sommes ravis de vous présenter nos dernières formations disponibles ce mois-ci :<ul><li>🧠 Salesforce pour débutants</li><li>📊 Maîtriser SAP en 10 jours</li><li>💼 ERP pour les PME</li></ul><br>Inscrivez-vous dès maintenant sur notre plateforme !<br><br>L’équipe Find Your Course'
+);
+
 
 -- You can add more sample data for other tables (enrollments, favorites, quiz_attempts, newsletter_subscriptions) if needed.
 -- Création de la table pour les paramètres généraux du site

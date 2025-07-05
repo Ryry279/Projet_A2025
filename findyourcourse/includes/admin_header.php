@@ -13,12 +13,14 @@ $csrf_token_admin = generateCsrfToken();
 ?>
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin - <?php echo isset($admin_page_title) ? htmlspecialchars($admin_page_title) : 'Dashboard'; ?></title>
     <link rel="stylesheet" href="<?php echo $baseUrl; ?>/assets/css/admin_style.css?v=<?php echo time(); ?>">
 </head>
+
 <body class="admin-body">
     <header class="admin-header">
         <h1>Administration - Find Your Course</h1>
@@ -30,17 +32,18 @@ $csrf_token_admin = generateCsrfToken();
                 <li><a href="<?php echo $baseUrl; ?>/admin/manage_categories.php">Catégories</a></li>
                 <li><a href="<?php echo $baseUrl; ?>/admin/manage_quizzes.php">Quiz</a></li>
                 <li><a href="<?php echo $baseUrl; ?>/admin/manage_newsletter.php">Newsletter</a></li>
+                <li><a href="<?php echo $baseUrl; ?>/admin/manage_mails.php">Mails</a></li>
                 <li><a href="<?php echo $baseUrl; ?>/admin/manage_settings.php">Paramètres</a></li>
-        
+
                 <li><a href="<?php echo $baseUrl; ?>/" target="_blank">Voir le Site</a></li>
                 <li><a href="<?php echo $baseUrl; ?>/admin/logout.php">Déconnexion</a></li>
             </ul>
         </nav>
     </header>
     <main class="admin-main">
-    <?php
-    if (isset($_SESSION['message'])) {
-        echo $_SESSION['message'];
-        unset($_SESSION['message']);
-    }
-    ?>
+        <?php
+        if (isset($_SESSION['message'])) {
+            echo $_SESSION['message'];
+            unset($_SESSION['message']);
+        }
+        ?>

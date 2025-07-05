@@ -45,14 +45,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // } else {
             //     $form_message = "Désolé, une erreur est survenue lors de l'envoi de votre message. Veuillez réessayer plus tard.";
             // }
-            
+
             // Simulate success for now:
             $form_success = true;
             $form_message = "Merci pour votre message ! Nous vous répondrons dès que possible. (Simulation d'envoi réussi)";
-            
+
             // Clear POST data to prevent re-submission on refresh if successful
-            if($form_success) {
-                 $_POST = []; // Or redirect to a thank you page
+            if ($form_success) {
+                $_POST = []; // Or redirect to a thank you page
             }
         }
     }
@@ -73,38 +73,44 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <h3>Envoyez-nous un Message</h3>
 
             <?php if ($form_message): ?>
-                <p style="padding: 10px; border-radius: 5px; background-color: <?php echo $form_success ? '#e6fffa' : '#ffebee'; ?>; color: <?php echo $form_success ? '#00695c' : '#c62828'; ?>; border: 1px solid <?php echo $form_success ? '#b2dfdb' : '#ef9a9a'; ?>;">
+                <p
+                    style="padding: 10px; border-radius: 5px; background-color: <?php echo $form_success ? '#e6fffa' : '#ffebee'; ?>; color: <?php echo $form_success ? '#00695c' : '#c62828'; ?>; border: 1px solid <?php echo $form_success ? '#b2dfdb' : '#ef9a9a'; ?>;">
                     <?php echo htmlspecialchars($form_message); ?>
                 </p>
             <?php endif; ?>
 
             <?php if (!$form_success): // Only show form if not successfully submitted or on initial load ?>
-            <form action="contact.php" method="POST" class="contact-form">
-                <input type="hidden" name="csrf_token" value="<?php echo htmlspecialchars($csrf_token); ?>">
-                <div class="form-group">
-                    <label for="contact-name">Votre Nom :</label>
-                    <input type="text" id="contact-name" name="name" required value="<?php echo isset($_POST['name']) ? htmlspecialchars($_POST['name']) : ''; ?>">
-                </div>
-                <div class="form-group">
-                    <label for="contact-email">Votre Email :</label>
-                    <input type="email" id="contact-email" name="email" required value="<?php echo isset($_POST['email']) ? htmlspecialchars($_POST['email']) : ''; ?>">
-                </div>
-                <div class="form-group">
-                    <label for="contact-subject">Sujet :</label>
-                    <input type="text" id="contact-subject" name="subject" required value="<?php echo isset($_POST['subject']) ? htmlspecialchars($_POST['subject']) : ''; ?>">
-                </div>
-                <div class="form-group">
-                    <label for="contact-message">Votre Message :</label>
-                    <textarea id="contact-message" name="message" rows="6" required><?php echo isset($_POST['message']) ? htmlspecialchars($_POST['message']) : ''; ?></textarea>
-                </div>
-                <div class="form-actions">
-                    <button type="submit" class="button">Envoyer le Message</button>
-                </div>
-            </form>
+                <form action="contact.php" method="POST" class="contact-form">
+                    <input type="hidden" name="csrf_token" value="<?php echo htmlspecialchars($csrf_token); ?>">
+                    <div class="form-group">
+                        <label for="contact-name">Votre Nom :</label>
+                        <input type="text" id="contact-name" name="name" required
+                            value="<?php echo isset($_POST['name']) ? htmlspecialchars($_POST['name']) : ''; ?>">
+                    </div>
+                    <div class="form-group">
+                        <label for="contact-email">Votre Email :</label>
+                        <input type="email" id="contact-email" name="email" required
+                            value="<?php echo isset($_POST['email']) ? htmlspecialchars($_POST['email']) : ''; ?>">
+                    </div>
+                    <div class="form-group">
+                        <label for="contact-subject">Sujet :</label>
+                        <input type="text" id="contact-subject" name="subject" required
+                            value="<?php echo isset($_POST['subject']) ? htmlspecialchars($_POST['subject']) : ''; ?>">
+                    </div>
+                    <div class="form-group">
+                        <label for="contact-message">Votre Message :</label>
+                        <textarea id="contact-message" name="message" rows="6"
+                            required><?php echo isset($_POST['message']) ? htmlspecialchars($_POST['message']) : ''; ?></textarea>
+                    </div>
+                    <div class="form-actions">
+                        <button type="submit" class="button">Envoyer le Message</button>
+                    </div>
+                </form>
             <?php endif; ?>
         </section>
 
-        <aside class="contact-info-section" style="flex: 1; min-width: 250px; background-color: #f9f9f9; padding: 25px; border-radius: 10px;">
+        <aside class="contact-info-section"
+            style="flex: 1; min-width: 250px; background-color: #f9f9f9; padding: 25px; border-radius: 10px;">
             <h3>Informations de Contact</h3>
             <p><strong>Pour toute question sur le projet annuel ESGI :</strong></p>
             <p>
@@ -120,10 +126,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <hr style="margin: 20px 0;">
             <p><strong>Pour des questions générales sur Find Your Course :</strong></p>
             <p>
-                Email : <a href="mailto:info@findyourcourse.example.com">info@findyourcourse.example.com</a><br>
+                Email : <a href="mailto:eme.findyourcourse@gmail.com">eme.findyourcourse@gmail.com</a><br>
                 (Cette adresse est un exemple, à remplacer par une adresse réelle pour la plateforme)
             </p>
-            </aside>
+        </aside>
     </div>
 </div>
 
