@@ -1,5 +1,4 @@
 <?php
-// admin/delete_mail.php
 require_once '../includes/db_connect.php';
 require_once '../includes/functions.php';
 
@@ -17,7 +16,6 @@ if (!$mail_id_to_delete) {
     exit;
 }
 
-// Suppression du mail
 $stmt_delete = $conn->prepare("DELETE FROM mail_gestion WHERE id = ?");
 $stmt_delete->bind_param("i", $mail_id_to_delete);
 

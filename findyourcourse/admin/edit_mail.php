@@ -1,5 +1,4 @@
 <?php
-// admin/edit_mail.php
 $admin_page_title = "Modifier un Mail";
 require_once '../includes/admin_header.php';
 require_once '../includes/db_connect.php';
@@ -21,7 +20,6 @@ if (!$mail_id) {
 $errors = [];
 $titre = $objet = $message_content = '';
 
-// Traitement du formulaire
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $titre = sanitizeInput($_POST['titre']);
     $objet = sanitizeInput($_POST['objet']);
@@ -44,7 +42,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
-// Récupération du mail à modifier
 $stmt = $conn->prepare("SELECT * FROM mail_gestion WHERE id = ?");
 $stmt->bind_param("i", $mail_id);
 $stmt->execute();
@@ -59,7 +56,6 @@ if ($result->num_rows !== 1) {
 $mail = $result->fetch_assoc();
 $stmt->close();
 
-// Pré-remplir les champs si ce n’est pas une soumission POST
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     $titre = $mail['titre'];
     $objet = $mail['objet'];
